@@ -6,13 +6,33 @@ const Feedback = ({
   positivePercentage,
   averageScore,
 }) => {
+  if (totalClicks === 0) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "1rem",
+        }}
+      >
+        <p
+          style={{
+            fontSize: "1rem",
+            fontWeight: "bold",
+          }}
+        >
+          Drop your review to see the statistics.
+        </p>
+      </div>
+    );
+  }
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: "1rem",
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
