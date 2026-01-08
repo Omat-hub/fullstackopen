@@ -4,32 +4,30 @@ import Feedback from "./components/Feedback";
 
 const App = () => {
   // save clicks of each button to its own state
-  const [click, setClick] = useState({ good: 0, neutral: 0, bad: 0 });
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
   const heading = "At Unicafe, we value your opinion";
 
+  const totalClicks = good + neutral + bad;
+  const positivePercentage = totalClicks > 0 ? (good / totalClicks) * 100 : 0;
+  const averageScore =
+    totalClicks > 0 ? (good * 1 + neutral * 0 + bad * -1) / totalClicks : 0;
+
   const handleGood = () => {
-    const newClick = {
-      ...click,
-      good: click.good + 1,
-    };
-    setClick(newClick);
+    setGood(good + 1);
   };
+
   const handleNeutral = () => {
-    const newClick = {
-      ...click,
-      neutral: click.neutral + 1,
-    };
-    setClick(newClick);
+    setNeutral(neutral + 1);
   };
+
   const handleBad = () => {
-    const newClick = {
-      ...click,
-      bad: click.bad + 1,
-    };
-    setClick(newClick);
+    setBad(bad + 1);
   };
-  console.log(click);
+
+  console.log(good, neutral, bad);
 
   return (
     <div
@@ -39,9 +37,10 @@ const App = () => {
         justifyContent: "center",
         alignItems: "center",
         marginBlock: "10rem",
-        border: "1px black solid",
+        border: "2px black solid",
         borderRadius: "5px",
-        padding: "10px",
+        padding: "5px",
+        maxWidth: "max-content",
       }}
     >
       <h1 style={{ fontSize: "2rem", fontWeight: "bold", textAlign: "center" }}>
@@ -53,7 +52,14 @@ const App = () => {
         handleBad={handleBad}
       />
 
-      <Feedback good={click.good} neutral={click.neutral} bad={click.bad} />
+      <Feedback
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        totalClicks={totalClicks}
+        positivePercentage={positivePercentage}
+        averageScore={averageScore}
+      />
     </div>
   );
 };
