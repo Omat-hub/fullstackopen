@@ -1,3 +1,5 @@
+import FeedbackLine from "./FeedbackLine";
+
 const Feedback = ({
   good,
   neutral,
@@ -35,24 +37,47 @@ const Feedback = ({
         alignItems: "center",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-        <p
+      <p
+        style={{
+          fontSize: "1rem",
+          fontWeight: "bold",
+        }}
+      >
+        Live feedback from our customers
+      </p>
+
+      <table
+        style={{
+          minWidth: "350px",
+          color: " #000000ff",
+        }}
+      >
+        <thead
           style={{
-            fontSize: "1rem",
-            fontWeight: "bold",
+            backgroundColor: " #a3a29fff",
           }}
         >
-          Live feedback from our customers:
-        </p>
-        <p>Good: {good}</p>
-        <p>Neutral: {neutral}</p>
-        <p>Bad: {bad}</p>
-      </div>
-      <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-        <p>Total Feedback: {totalClicks}</p>
-        <p>Positive Feedback: {positivePercentage.toFixed(1)}%</p>
-        <p>Average Score: {averageScore.toFixed(2)}</p>
-      </div>
+          <tr>
+            <th>Stats</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody
+          style={{
+            backgroundColor: " #e4e4e4ff",
+          }}
+        >
+          <FeedbackLine text="Good" value={good} />
+          <FeedbackLine text="Neutral" value={neutral} />
+          <FeedbackLine text="Bad" value={bad} />
+          <FeedbackLine text="Total Feedback" value={totalClicks} />
+          <FeedbackLine text="Average Score" value={averageScore.toFixed(2)} />
+          <FeedbackLine
+            text="Positive Feedback: "
+            value={positivePercentage.toFixed(2) + " %"}
+          />
+        </tbody>
+      </table>
     </div>
   );
 };
