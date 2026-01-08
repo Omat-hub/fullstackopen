@@ -14,14 +14,14 @@ const Rating = ({ handleGood, handleNeutral, handleBad }) => {
         style={{
           fontSize: "1rem",
           fontWeight: "bold",
-          maxWidth: "25ch",
+          maxWidth: "26ch",
         }}
       >
         How would you rate your overall experience?
       </p>
-      <Button onClick={handleGood} text="Good" color="green" />
-      <Button onClick={handleNeutral} text="Neutral" color="gray" />
-      <Button onClick={handleBad} text="Bad" color="red" />
+      <Button onClick={handleGood} text="Good" color="#10dc10ff" />
+      <Button onClick={handleNeutral} text="Neutral" color="#b7b5b5ff" />
+      <Button onClick={handleBad} text="Bad" color="#fc4545ff" />
     </div>
   );
 };
