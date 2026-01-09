@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "./components/Button";
+import MostVote from "./components/MostVote";
 
 const App = () => {
   const anecdotes = [
@@ -32,10 +33,13 @@ const App = () => {
     setVotes(copy);
   };
 
+  const mostVoted = votes.indexOf(Math.max(...votes));
+  const mostVotedAnecdote = anecdotes[mostVoted];
+
   console.log(votes);
 
   return (
-    <div style={{ maxWidth: "600px", margin: "0 auto", textAlign: "center" }}>
+    <div style={{ maxWidth: "400px", margin: "0 auto", textAlign: "center" }}>
       <h1>Anecdote of the day</h1>
       <div
         style={{
@@ -55,7 +59,7 @@ const App = () => {
             bottom: "0px",
             right: "0px",
             fontWeight: "bold",
-            backgroundColor: "#ffffffaa",
+            backgroundColor: "#b4b4b4aa",
             padding: "5px 10px",
             borderRadius: "8px",
           }}
@@ -66,6 +70,11 @@ const App = () => {
 
       <Button onClick={handleRandClick} text="View More" color="lightblue" />
       <Button onClick={handleVotes} text="Vote" color="lightgreen" />
+      <MostVote
+        mostVoted={mostVoted}
+        mostVotedAnecdote={mostVotedAnecdote}
+        votes={votes}
+      />
     </div>
   );
 };
