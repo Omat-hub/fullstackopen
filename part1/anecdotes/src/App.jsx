@@ -1,0 +1,73 @@
+import { useState } from "react";
+import Button from "./components/Button";
+
+const App = () => {
+  const anecdotes = [
+    "If it hurts, do it more often.",
+    "Adding manpower to a late software project makes it later!",
+    "The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.",
+    "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+    "Premature optimization is the root of all evil.",
+    "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
+    "Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.",
+    "The only way to go fast, is to go well.",
+  ];
+
+  const [selected, setSelected] = useState(0);
+  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0));
+
+  const handleRandClick = () => {
+    setSelected(Math.floor(Math.random() * anecdotes.length));
+  };
+
+  const handleVotes = () => {
+    // setVotes((prev) => {
+    //   const next = [...prev];
+    //   next[selected] += 1;
+    //   return next;
+    // });
+
+    const copy = [...votes];
+    copy[selected] += 1;
+    setVotes(copy);
+  };
+
+  console.log(votes);
+
+  return (
+    <div style={{ maxWidth: "600px", margin: "0 auto", textAlign: "center" }}>
+      <h1>Anecdote of the day</h1>
+      <div
+        style={{
+          position: "relative",
+          marginBottom: "20px",
+          lineHeight: "1.6",
+          backgroundColor: "#e3e3e3ff",
+          padding: "15px",
+          borderRadius: "8px",
+          height: "150px",
+        }}
+      >
+        <p>{anecdotes[selected]}</p>
+        <span
+          style={{
+            position: "absolute",
+            bottom: "0px",
+            right: "0px",
+            fontWeight: "bold",
+            backgroundColor: "#ffffffaa",
+            padding: "5px 10px",
+            borderRadius: "8px",
+          }}
+        >
+          {votes[selected]} votes
+        </span>
+      </div>
+
+      <Button onClick={handleRandClick} text="View More" color="lightblue" />
+      <Button onClick={handleVotes} text="Vote" color="lightgreen" />
+    </div>
+  );
+};
+
+export default App;
